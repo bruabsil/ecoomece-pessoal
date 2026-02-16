@@ -1,0 +1,60 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+body {
+      background-color: black;
+   
+
+ 
+
+}
+
+
+link {
+
+    color: white;
+
+  
+}
+
+
+.logo-titulo {
+
+    display: flex;
+    flex-direction: row;
+    background-color: grey;
+    justify-content: space-between;
+     border: 2px solid white;
+     padding: 0 15px;
+     
+
+
+
+}
+.pesquisa-opcao{
+   
+    display: flex;
+    padding: 0 70px;
+    flex-grow: 1;
+   
+
+}
+
+
+
+.selecionar-opticao{
+ 
+    margin-left: 20px;
+    padding: 15px;
+    border: 2px solid white;
+}
+ 
+
+
+
+
+
