@@ -1,0 +1,238 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
+body {
+      background-color: black;
+   
+
+}
+
+.SITE-NOME {
+
+     color: #000;
+     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+
+
+  
+
+}
+
+
+.logo-titulo {
+
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(52, 52, 52);
+    align-items: center;
+    padding: 20px;
+   
+  
+
+
+}
+
+
+    
+
+
+
+.pesquisa-opcao{
+
+  margin: 10px;
+  padding: 0 40px;
+    display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+
+
+
+   
+
+}
+
+
+.pesquisa-opcao input{
+
+   
+    width:100%;
+    padding: 10px;
+    background-color: #222;
+    font-size: 1.4em;
+    color: rgb(255, 255, 255);
+    
+
+
+    
+
+    
+}
+
+
+.selecionar-opticao{
+
+    margin-left: 20px;
+    background-color: #222;
+    color: white;
+    font-size: 1.2em;
+    color: gray;
+
+
+
+
+}
+
+
+.opcao {
+    background-color:white;
+
+
+
+}
+ 
+
+.container {
+
+
+margin: 50px;
+    display: flex;
+flex-direction: row;
+   flex-wrap: wrap;
+   justify-content: center;
+
+
+  
+
+}
+
+
+.conteudo {
+
+
+
+    margin: 20px;
+   display: flex;
+   flex-direction: column;
+   background-color:#303134;
+   display: inline;
+
+   
+   
+
+ 
+
+}
+
+.img-site {
+    height:300px ;
+    width: 100%;
+
+
+
+
+
+
+}
+
+.info-produto {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  
+
+  
+  width: 100%;
+  max-width: 600px;       
+  margin: 0 auto;         
+  padding: 20px;
+  color: aliceblue;     
+}  
+
+ 
+
+
+
+
+
+a {
+    color: white;
+    font-size: 1.3em;
+    text-decoration: none;
+       width: fit-content;
+    transition: 0.5s
+}
+
+a:hover {
+
+    cursor: pointer;
+    background-color:blue;
+ 
+ 
+
+   
+}
+
+
+.info-itens {
+  width: 100%;
+  word-wrap: break-word;     
+  margin-top: 5px;      
+}
+
+.nome-produto {
+
+    color: gold;
+
+
+}
+
+.footer-logo {
+      background-color: rgb(52, 52, 52);
+    padding: 20px;
+    margin: 0 auto;
+        color: white;
+
+}
+
+
+.footer-descricao {
+
+display: flex;
+flex-direction: row;
+justify-content: center;
+ 
+
+}
+
+
+
+   
+
+
+ 
+   
+    
+
+
+
+
+
+
+
+.marca {
+    display: none;
+} 
+
+
+
+
+
+
+
