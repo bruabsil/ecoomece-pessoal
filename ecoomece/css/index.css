@@ -7,14 +7,14 @@
 }
 
 body {
-      background-color: black;
+      background-color:;
    
 
 }
 
 .SITE-NOME {
 
-     color: #000;
+     color: white;
      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 
 
@@ -28,7 +28,7 @@ body {
 
     display: flex;
     flex-direction: row;
-    background-color: rgb(52, 52, 52);
+  background-color: #000000;
     align-items: center;
     padding: 20px;
    
@@ -118,7 +118,7 @@ flex-direction: row;
     margin: 20px;
    display: flex;
    flex-direction: column;
-   background-color:#303134;
+   background-color:#333;
    display: inline;
 
    
@@ -194,7 +194,7 @@ a:hover {
 }
 
 .footer-logo {
-      background-color: rgb(52, 52, 52);
+      background-color: rgb(0, 0, 0);
     padding: 20px;
     margin: 0 auto;
         color: white;
@@ -210,19 +210,6 @@ justify-content: center;
  
 
 }
-
-
-
-   
-
-
- 
-   
-    
-
-
-
-
 
 
 
