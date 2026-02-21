@@ -2,19 +2,19 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   font-family: 'Courier New', Courier, monospace
 
 }
 
 body {
-      background-color:;
+      background-color:black;
    
 
 }
 
 .SITE-NOME {
 
-     color: white;
+     color: gold;
      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 
 
@@ -31,9 +31,7 @@ body {
   background-color: #000000;
     align-items: center;
     padding: 20px;
-   
-  
-
+    
 
 }
 
