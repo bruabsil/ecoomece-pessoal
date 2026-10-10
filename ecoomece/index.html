@@ -13,22 +13,43 @@
  <header class="logo-titulo">
 
 
- 
+ <div class="titulo-pricipal">
+
   <h1 class="SITE-NOME">Masaru Suplementos</h1>
-  
+
+  </div>
 
 
-  <div class="pesquisa-opcao">
+  <div class="pesquisa-opcoes">
   <input type="text" placeholder="pesquisar">
-  <label for="opcao"></label>
-  <select class="selecionar-opticao" name="opcao" 
+   </div>
+
+
+
+ 
+
+
+  <select class="selecionar-optcoes" name="opcao" 
   id="opcao"> 
-   <option class="opcao" value="selecionar-opiço">selecionar opiçoes</option>
+   <option value="" disabled selected hidden>Opções</option>
   <option class="opcao" value="opcao">Creatina</option>
   <option class="opcao" value="opcao">Whey</option>
   <option class="opcao" value="opcao">Barra de proteina</option>
   </select>
+
+
+  <!-- NOVO BLOCO: Favoritos e Carrinho -->
+
+  <div class="itens-icone">
+    <a href="#" class="icone-user favorito" title="Favoritos">
+      <span class="text-icone">Favoritos</span>
+    </a>
+
+     <a href="#" class="icone-user Carrinho" title="Carrinho de Compras">
+      <span class="contador-carrinho">0</span>
+    </a>
   </div>
+
 
  </header>
 
@@ -40,104 +61,20 @@
 
 
     <div class="conteudo"> 
-    <img class="img-site" src="./whey.jpg" alt="imagem de um eletronico">
 
-
-    <div class="info-produto">
-      <h2 class="nome-produto">Nome do produto</h2>
-       <a class="#" href="sobre o produto">Compre o produto</a>
-      <p class="info-itens">
-        descriçao do produto
-      </p>
+   <div class="image">
+      <img src="./imagms/Captura de tela 2026-10-08 201829.png" alt="Suplemento Masaru" class="imagem-site">
     </div>
-   </div>
 
-   
-   
-    <div class="conteudo"> 
-    <img class="img-site" src="./whey.jpg" alt="imagem de um eletronico">
-
-
-    <div class="info-produto">
-      <h2 class="nome-produto">Nome do produto</h2>
-       <a class="#" href="sobre o produto">Compre o produto</a>
-      <p class="info-itens">
-        descriçao do produto
-      </p>
-    </div>
-   </div>
-
-   
-    <div class="conteudo"> 
-    <img class="img-site" src="./whey.jpg" alt="imagem de um eletronico">
+    <div class="informacao-produto">
+      <h3 class="nome-produto">Creatina Monohidratada 300g</h3>
+      <p class="info-estoque">Estoque disponível: <span id="qtd-estoque">5</span> unidades
+        <div>
+  <button class="btn-comprar">Comprar produto</button>
+</div>
 
 
-    <div class="info-produto">
-      <h2 class="nome-produto">Nome do produto</h2>
-       <a class="#" href="sobre o produto">Compre o produto</a>
-      <p class="info-itens">
-        descriçao do produto
-      </p>
-    </div>
-   </div>
-   <div class="conteudo"> 
-    <img class="img-site" src="./whey.jpg" alt="imagem de um eletronico">
-
-
-    <div class="info-produto">
-      <h2 class="nome-produto">Nome do produto</h2>
-       <a class="#" href="sobre o produto">Compre o produto</a>
-      <p class="info-itens">
-        descriçao do produto
-      </p>
-    </div>
-   </div>
-   <div class="conteudo"> 
-    <img class="img-site" src="./whey.jpg" alt="imagem de um eletronico">
-
-
-    <div class="info-produto">
-      <h2 class="nome-produto">Nome do produto</h2>
-       <a class="#" href="sobre o produto">Compre o produto</a>
-      <p class="info-itens">
-        descriçao do produto
-      </p>
-    </div>
-   </div>
-   <div class="conteudo"> 
-    <img class="img-site" src="./whey.jpg" alt="imagem de um eletronico">
-
-
-    <div class="info-produto">
-      <h2 class="nome-produto">Nome do produto</h2>
-       <a class="#" href="sobre o produto">Compre o produto</a>
-      <p class="info-itens">
-        descriçao do produto
-      </p>
-    </div>
-   </div>
-   <div class="conteudo"> 
-    <img class="img-site" src="./whey.jpg" alt="imagem de um eletronico">
-
-
-    <div class="info-produto">
-      <h2 class="nome-produto">Nome do produto</h2>
-       <a class="#" href="sobre o produto">Compre o produto</a>
-      <p class="info-itens">
-        descriçao do produto
-      </p>
-    </div>
-   </div>
-   <div class="conteudo"> 
-    <img class="img-site" src="./whey.jpg" alt="imagem de um eletronico">
-
-
-    <div class="info-produto">
-      <h2 class="nome-produto">Nome do produto</h2>
-       <a class="#" href="sobre o produto">Compre o produto</a>
-      <p class="info-itens">
-        descriçao do produto
-      </p>
+    
     </div>
    </div>
 
@@ -154,6 +91,10 @@
   </div>
   
  </footer>
+
+ <script src="./js/index.js"></script>
+
+
   
 
 

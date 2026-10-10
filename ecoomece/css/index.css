@@ -6,16 +6,19 @@
 
 }
 
+////////////////////////* barra de pesquisa *///////////////////////////////////////////////
+
 body {
-      background-color:black;
+      background-color:white;
    
 
 }
 
-.SITE-NOME {
+.titulo-pricipal {
 
      color: gold;
      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
 
 
 
@@ -27,84 +30,114 @@ body {
 .logo-titulo {
 
     display: flex;
-    flex-direction: row;
+    justify-content: space-between;
   background-color: #000000;
     align-items: center;
     padding: 20px;
-    
+
 
 }
 
 
-    
+
+.pesquisa-opcoes input {
+  text-align: center;
+}
 
 
+.pesquisa-opcoes input[type="text"] {
 
-.pesquisa-opcao{
-
-  margin: 10px;
-  padding: 0 40px;
-    display: flex;
-  flex-direction: row;
-  flex-grow: 1;
-
-
-
+     margin: 10px;
+padding: 8px 20px;
+ margin-left: 20px;
+    background-color: #f5f2f2;
+    font-size: 1.2em;
    
-
-}
-
-
-.pesquisa-opcao input{
-
    
-    width:100%;
-    padding: 10px;
-    background-color: #222;
-    font-size: 1.4em;
-    color: rgb(255, 255, 255);
     
-
-
-    
-
-    
+ 
+   
 }
 
+.pesquisa-opcoes input::placeholder {
+  color: #000000 !important;
+  opacity: 1 !important;
 
-.selecionar-opticao{
+}
 
-    margin-left: 20px;
+    
+
+
+
+.selecionar-optcoes {
+      margin-left: 20px;
     background-color: #222;
-    color: white;
     font-size: 1.2em;
     color: gray;
-
-
-
-
-}
-
-
-.opcao {
-    background-color:white;
-
+    display: flex;
+  
 
 
 }
+
+/* Agrupador dos botões de Favoritos e Carrinho */
+.itens-icone {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Espaço entre Favoritos e Carrinho */
+  margin-left: 15px;
+}
+
+.acoes-usuario {
+
+  flex-direction: row;
+  align-items: center;
+  gap: 15px; /* Espaço entre Favoritos e Carrinho */
+  margin-left: 15px;
+}
+
+
+.icone-user {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  position: relative;
+  transition: opacity 0.2s ease;
+}
+
+.icone-user:hover {
+  opacity: 0.8;
+}
+
+.contador-carrinho{
+  background-color: #ff3b30;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 50%;
+  margin-left: 2px;
+}
+
+
+
+/* //////////////////           conteudo e produto                       ////////////////// */
  
 
 .container {
 
 
-margin: 50px;
+gap: 30px;
     display: flex;
 flex-direction: row;
    flex-wrap: wrap;
    justify-content: center;
 
 
-  
+
 
 }
 
@@ -113,7 +146,7 @@ flex-direction: row;
 
 
 
-    margin: 20px;
+   margin: 20px;
    display: flex;
    flex-direction: column;
    background-color:#333;
@@ -160,7 +193,7 @@ flex-direction: row;
 
 
 a {
-    color: white;
+    color: rgb(252, 185, 0);
     font-size: 1.3em;
     text-decoration: none;
        width: fit-content;
@@ -190,6 +223,34 @@ a:hover {
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ////////////////       banner final da pagina                   /////////////////// */
+
+
+
+
 
 .footer-logo {
       background-color: rgb(0, 0, 0);
