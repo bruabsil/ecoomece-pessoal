@@ -75,54 +75,71 @@ padding: 8px 20px;
     font-size: 1.2em;
     color: gray;
     display: flex;
+
   
 
 
 }
 
-/* Agrupador dos botões de Favoritos e Carrinho */
+
+
+
+.bloco-acoes {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border: 2px solid #ffd700; 
+  border-radius: 8px;
+  padding: 8px 14px;
+  background-color: #000000;
+  margin-left: auto; 
+}
+
 .itens-icone {
   display: flex;
   align-items: center;
-  gap: 15px; /* Espaço entre Favoritos e Carrinho */
-  margin-left: 15px;
+  gap: 12px;
 }
 
-.acoes-usuario {
-
-  flex-direction: row;
-  align-items: center;
-  gap: 15px; /* Espaço entre Favoritos e Carrinho */
-  margin-left: 15px;
-}
-
-
-.icone-user {
-  color: #ffffff;
-  text-decoration: none;
-  font-size: 14px;
+.icone-user { 
   display: flex;
   align-items: center;
-  gap: 5px;
-  position: relative;
+  gap: 6px;
+  text-decoration: none;
   transition: opacity 0.2s ease;
 }
 
-.icone-user:hover {
-  opacity: 0.8;
+.imag-banner {
+  width: 18px;  
+  height: 18px; 
+filter: invert(80%) sepia(85%) saturate(1400%) hue-rotate(355deg) brightness(102%) contrast(103%);
 }
 
-.contador-carrinho{
-  background-color: #ff3b30;
+
+
+.icone-user:hover {
+  opacity: 0.85; 
+  background-color: transparent;
+}
+
+.text-icone {
+  color: #ffd700;
+  font-family: monospace;
+  font-weight: bold;
+  font-size: 14px;
+
+}
+
+
+.contador-carrinho {
+  background-color: #ff3b30; 
   color: #ffffff;
   font-size: 11px;
   font-weight: bold;
-  padding: 2px 6px;
+  padding: 1px 6px;
   border-radius: 50%;
   margin-left: 2px;
 }
-
-
 
 /* //////////////////           conteudo e produto                       ////////////////// */
  
@@ -203,7 +220,7 @@ a {
 a:hover {
 
     cursor: pointer;
-    background-color:blue;
+
  
  
 
@@ -275,7 +292,6 @@ justify-content: center;
 .marca {
     display: none;
 } 
-
 
 
 

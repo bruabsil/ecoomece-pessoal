@@ -79,7 +79,24 @@ console.log("Ganhou frete grátis? " + temFreteGratis);
 
 
 
+// Dados simulados do carrinho
 
+const precoProduto = 90.00; // Ex: Preço da Creatina
+const quantidade = 2;       // Quantidade escolhida pelo usuário
+const valorFrete = 15.00;   // Taxa fixa de entrega
+const desconto = 10.00;     // Cupom de desconto em reais
+
+// 1. Multiplicação (*) para achar o subtotal dos produtos
+const subtotal = precoProduto * quantidade;
+
+// 2. Subtração (-) para aplicar o desconto
+const valorComDesconto = subtotal - desconto;
+
+// 3. Adição (+) para somar o frete ao total final
+const valorTotalFinal = valorComDesconto + valorFrete;
+
+console.log("Subtotal: R$ " + subtotal);
+console.log("Total com frete: R$ " + valorTotalFinal);
 
 
 
