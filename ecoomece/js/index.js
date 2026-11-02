@@ -1,132 +1,132 @@
-// ========================================================
-// AULA ANTERIOR: Contador simples de produtos
-// ========================================================
-/*
+
+const produtos = [
+  // --- Fila / Grupo de Creatinas (3 itens) ---
+  { 
+    nome: "Creatina Monohidratada 300g", 
+    preco: 80.00, 
+    estoque: 5, 
+    imagem: "./imagms/Captura de tela 2026-10-08 201829.png" 
+  },
+
+  { 
+    nome: "Creatina Hardcore 250g", 
+    preco: 70.00, 
+    estoque: 8, 
+    imagem: "./imagms/Captura de tela 2026-10-08 201829.png" 
+  },
+
+  { 
+    nome: "Creatina Creapure 300g", 
+    preco: 110.00, 
+    estoque: 4, 
+    imagem: "./imagms/Captura de tela 2026-10-08 201829.png" 
+  },
+
+  // --- Fila / Grupo de Whey Proteins (2 itens) ---
+  { 
+    nome: "Whey Protein Concentrado 1kg", 
+    preco: 120.00, 
+    estoque: 3, 
+    imagem: "./imagms/Captura de tela 2026-10-08 201829.png" 
+  },
+
+  { 
+    nome: "Whey Protein Isolado 900g", 
+    preco: 160.00, 
+    estoque: 6, 
+    imagem: "./imagms/Captura de tela 2026-10-08 201829.png" 
+  },
+
+  { 
+    nome: "Whey Protein zero lactose 900g", 
+    preco: 160.00, 
+    estoque: 6, 
+    imagem: "./imagms/Captura de tela 2026-10-08 201829.png" 
+  },
+
+  // --- Fila / Grupo de Pré-Treinos (3 itens) ---
+  { 
+    nome: "Pré-Treino Explosive 250g", 
+    preco: 95.00, 
+    estoque: 10, 
+    imagem: "./imagms/Captura de tela 2026-10-08 201829.png" 
+  },
+  { 
+    nome: "Pré-Treino Hórus 300g", 
+    preco: 105.00, 
+    estoque: 7, 
+    imagem: "./imagms/Captura de tela 2026-10-08 201829.png" 
+  },
+  { 
+    nome: "Pré-Treino Venom 200g", 
+    preco: 115.00, 
+    estoque: 2, 
+    imagem: "./imagms/Captura de tela 2026-10-08 201829.png" 
+  }
+];
+
+
+
+const containerProdutos = document.querySelector('#lista-produtos');
+
+
+for (let i = 0; i < produtos.length; i++) {
+  let produto = produtos[i];
+
+  containerProdutos.innerHTML += `
+    <div class="card-produto">
+      <img src="${produto.imagem}" alt="${produto.nome}">
+      <div class="card-info">
+        <h3>${produto.nome}</h3>
+        <p class="estoque">Estoque disponível: ${produto.estoque} unidades</p>
+        <p class="preco">R$ ${produto.preco.toFixed(2)}</p>
+        <button class="btn-comprar">Comprar Produto</button>
+      </div>
+    </div>
+  `;
+}
+
+// \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\separando\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
 const botoesComprar = document.querySelectorAll('.btn-comprar');
-let contadorCarrinho = 0;
-
-botoesComprar.forEach(function (botao) {
-  botao.addEventListener('click', function (evento) {
-    evento.preventDefault();
-    contadorCarrinho = contadorCarrinho + 1;
-    console.log(`Valor atual do carrinho: ${contadorCarrinho}`);
-  });
-});
-*/
-
-
-
-
-
-
-
-
-
-
-// ========================================================
-// AULA DE HOJE: Operadores de Comparação no E-commerce
-// ========================================================
-
-const botoesComprar = document.querySelectorAll('.btn-comprar');
+const contadorHtml = document.querySelector('.contador-carrinho');
 
 let contadorCarrinho = 0;
 let valorTotal = 0;
 
-const precoSuplemento = 80;            // Number
+const precoSuplemento = 80;         // Number
 const cupomAplicado = "MASARU10";     // String
-const estoqueDisponivel = 5;          // Number
+const estoqueDisponivel = 100;          // Number
 
 botoesComprar.forEach(function (botao) {
   botao.addEventListener('click', function (evento) {
     evento.preventDefault();
 
+    // 1. Condicional para verificar o estoque antes de adicionar
+    if (contadorCarrinho >= estoqueDisponivel) {
+      console.log("❌ Estoque esgotado! Não é possível adicionar mais itens.");
+      return; // Para a execução aqui se o estoque acabou
+    }
+
     contadorCarrinho = contadorCarrinho + 1;
     valorTotal = valorTotal + precoSuplemento;
 
+    contadorHtml.textContent = contadorCarrinho;
+
     console.log(`--- CLIQUE Nº ${contadorCarrinho} ---`);
 
-    // 1. Estritamente Igual (===)
-    let eCupomOficial = (cupomAplicado === "MASARU10");
-    console.log(`O cupom aplicado é o oficial da loja? ${eCupomOficial}`); 
-
-    // 2. Estritamente Não Igual (!==)
-    let estoqueFoiAlterado = (contadorCarrinho !== estoqueDisponivel);
-    console.log(`O número de itens comprados é diferente do estoque total? ${estoqueFoiAlterado}`);
-
-    // 3. Maior ou Igual (>=)
+    // 2. Condicional para verificar o frete grátis e dar um feedback
     let atingiuFreteGratis = (valorTotal >= 150);
-    console.log(`Valor Total: R$ ${valorTotal},00 | Atingiu Frete Grátis? ${atingiuFreteGratis}`);
-
-    // 4. Menor ou Igual (<=)
-    let dentroDoEstoque = (contadorCarrinho <= estoqueDisponivel);
-    console.log(`Quantidade comprada está dentro do limite do estoque? ${dentroDoEstoque}`);
+    
+    if (atingiuFreteGratis) {
+      console.log(`🎁 Valor Total: R$ ${valorTotal},00 | PARABÉNS! Você ganhou FRETE GRÁTIS!`);
+    } else {
+      let faltaParaFrete = 150 - valorTotal;
+      console.log(`📦 Valor Total: R$ ${valorTotal},00 | Faltam R$ ${faltaParaFrete},00 para o frete grátis.`);
+    }
     
     console.log('----------------------------\n');
   });
 });
 
 
-
-const valorCompra = 120;
-const clienteLogado = true;
-
-// O frete só é liberado se AMBAS as condições forem verdadeiras
-const temFreteGratis = (valorCompra >= 100) && (clienteLogado === true);
-
-console.log("Ganhou frete grátis? " + temFreteGratis); 
-// Vai retornar: true (porque os dois lados deram bom)
-
-
-
-
-// Dados simulados do carrinho
-
-const precoProduto = 90.00; // Ex: Preço da Creatina
-const quantidade = 2;       // Quantidade escolhida pelo usuário
-const valorFrete = 15.00;   // Taxa fixa de entrega
-const desconto = 10.00;     // Cupom de desconto em reais
-
-// 1. Multiplicação (*) para achar o subtotal dos produtos
-const subtotal = precoProduto * quantidade;
-
-// 2. Subtração (-) para aplicar o desconto
-const valorComDesconto = subtotal - desconto;
-
-// 3. Adição (+) para somar o frete ao total final
-const valorTotalFinal = valorComDesconto + valorFrete;
-
-console.log("Subtotal: R$ " + subtotal);
-console.log("Total com frete: R$ " + valorTotalFinal);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// document: É como você falar para o JS: "Olha pra folha inteira do meu arquivo HTML".
-
-// querySelectorAll('.btn-comprar'): É a ordem específica: "Dentro dessa folha, encontra todos os elementos que estão marcados com a classe .btn-comprar".

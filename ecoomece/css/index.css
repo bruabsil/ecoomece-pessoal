@@ -1,300 +1,239 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-   font-family: 'Courier New', Courier, monospace
-
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
 }
-
-////////////////////////* barra de pesquisa *///////////////////////////////////////////////
 
 body {
-      background-color:white;
-   
-
+  background-color: #0d0d0d;
+  color: #ffffff;
 }
 
-.titulo-pricipal {
-
-     color: gold;
-     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-
-
-
-
-  
-
+/* 2. Cabeçalho Moderno */
+header {
+  background-color: #141414;
+  border-bottom: 1px solid #262626;
+  padding: 15px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
 }
 
-
-.logo-titulo {
-
-    display: flex;
-    justify-content: space-between;
-  background-color: #000000;
-    align-items: center;
-    padding: 20px;
-
-
+.logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #ffcc00; /* Amarelo vibrante */
+  letter-spacing: -0.5px;
 }
 
-
+/* Barra de Pesquisa e Filtros */
+.pesquisa-opcoes {
+  flex: 0 1 320px;
+  min-width: 0;
+  max-width: 320px;
+}
 
 .pesquisa-opcoes input {
-  text-align: center;
+  display: block;
+  width: 100%;
+  min-width: 0;
+  padding: 10px 12px;
+  border: 1px solid #333;
+  border-radius: 8px;
+  background-color: #222;
+  color: #fff;
+
+  outline: none;
 }
 
-
-.pesquisa-opcoes input[type="text"] {
-
-     margin: 10px;
-padding: 8px 20px;
- margin-left: 20px;
-    background-color: #f5f2f2;
-    font-size: 1.2em;
-   
-   
-    
- 
-   
+.pesquisa-opcoes input:focus {
+  border-color: #ffcc00;
 }
-
-.pesquisa-opcoes input::placeholder {
-  color: #000000 !important;
-  opacity: 1 !important;
-
-}
-
-    
-
-
 
 .selecionar-optcoes {
-      margin-left: 20px;
-    background-color: #222;
-    font-size: 1.2em;
-    color: gray;
-    display: flex;
+display: block;
+  min-width: 0;
+  padding: 10px 12px;
+  border: 1px solid #333;
+  border-radius: 8px;
+  background-color: #222;
+  color: #fff;
 
-  
-
-
+  outline: none;
 }
 
+/* Botões do Header (Favoritos / Carrinho) */
+.header-actions {
+  display: flex;
+  gap: 12px;
+}
 
+.btn-header {
+  background: #1a1a1a;
+  border: 1px solid #ffcc00;
+  color: #ffcc00;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
 
+.btn-header:hover {
+  background: #ffcc00;
+  color: #000;
+}
 
 .bloco-acoes {
   display: flex;
   align-items: center;
-  gap: 15px;
-  border: 2px solid #ffd700; 
-  border-radius: 8px;
-  padding: 8px 14px;
-  background-color: #000000;
-  margin-left: auto; 
+  gap: 16px;
 }
 
-.itens-icone {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.icone-user { 
+.icone-user {
   display: flex;
   align-items: center;
   gap: 6px;
+  color: #ffcc00;
+  font-size: 14px;
+  font-weight: 600;
   text-decoration: none;
-  transition: opacity 0.2s ease;
+  white-space: nowrap;
 }
 
 .imag-banner {
-  width: 18px;  
-  height: 18px; 
-filter: invert(80%) sepia(85%) saturate(1400%) hue-rotate(355deg) brightness(102%) contrast(103%);
+  display: block;
+  flex: 0 0 20px;
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  filter: invert(80%) sepia(85%) saturate(1400%) hue-rotate(355deg) brightness(102%) contrast(103%);
 }
-
-
-
-.icone-user:hover {
-  opacity: 0.85; 
-  background-color: transparent;
-}
-
-.text-icone {
-  color: #ffd700;
-  font-family: monospace;
-  font-weight: bold;
-  font-size: 14px;
-
-}
-
 
 .contador-carrinho {
-  background-color: #ff3b30; 
-  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background-color: #ff3b30;
+  color: #fff;
   font-size: 11px;
-  font-weight: bold;
-  padding: 1px 6px;
-  border-radius: 50%;
-  margin-left: 2px;
+  font-weight: 700;
 }
 
-/* //////////////////           conteudo e produto                       ////////////////// */
- 
-
-.container {
-
-
-gap: 30px;
-    display: flex;
-flex-direction: row;
-   flex-wrap: wrap;
-   justify-content: center;
-
-
-
-
+/* 3. Grid / Card do Produto */
+.container-produtos {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
 }
 
-
-.conteudo {
-
-
-
-   margin: 20px;
-   display: flex;
-   flex-direction: column;
-   background-color:#333;
-   display: inline;
-
-   
-   
-
- 
-
+.card-produto {
+  width: 100%;
+  background-color: #161616;
+  border: 1px solid #262626;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
-.img-site {
-    height:300px ;
-    width: 100%;
-
-
-
-
-
-
+.card-produto:hover {
+  transform: translateY(-5px);
+  border-color: #ffcc00;
 }
 
-.info-produto {
+.card-produto img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  background-color: #fff; /* Mantém a imagem nítida caso tenha fundo branco */
+}
+
+@media (max-width: 760px) {
+  .container-produtos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  .container-produtos {
+    grid-template-columns: 1fr;
+  }
+}
+
+.image {
+  display: flex;
+  justify-content: center;
+}
+
+.imagem-site {
+  display: block;
+  width: 100%;
+  max-width: 360px;
+  height: auto;
+  object-fit: contain;
+}
+
+.card-info {
+  padding: 20px;
   display: flex;
   flex-direction: column;
+  gap: 10px;
+}
+
+.card-info h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.estoque {
+  font-size: 0.85rem;
+  color: #a0a0a0;
+}
+
+.preco {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #ffcc00;
+  margin-top: 5px;
+}
+
+.btn-comprar {
+  background-color: #ffcc00;
+  color: #000000;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.btn-comprar:hover {
+  background-color: #e6b800;
+}
+
+/* 4. Rodapé Limpo */
+footer {
   text-align: center;
-  justify-content: center;
-  align-items: center;
-  
-
-  
-  width: 100%;
-  max-width: 600px;       
-  margin: 0 auto;         
-  padding: 20px;
-  color: aliceblue;     
-}  
-
- 
-
-
-
-
-
-a {
-    color: rgb(252, 185, 0);
-    font-size: 1.3em;
-    text-decoration: none;
-       width: fit-content;
-    transition: 0.5s
+  padding: 30px;
+  color: #666;
+  font-size: 0.85rem;
+  border-top: 1px solid #1a1a1a;
+  margin-top: 60px;
 }
-
-a:hover {
-
-    cursor: pointer;
-
- 
- 
-
-   
-}
-
-
-.info-itens {
-  width: 100%;
-  word-wrap: break-word;     
-  margin-top: 5px;      
-}
-
-.nome-produto {
-
-    color: gold;
-
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* ////////////////       banner final da pagina                   /////////////////// */
-
-
-
-
-
-.footer-logo {
-      background-color: rgb(0, 0, 0);
-    padding: 20px;
-    margin: 0 auto;
-        color: white;
-
-}
-
-
-.footer-descricao {
-
-display: flex;
-flex-direction: row;
-justify-content: center;
- 
-
-}
-
-
-
-.marca {
-    display: none;
-} 
-
-
-
-
-
-

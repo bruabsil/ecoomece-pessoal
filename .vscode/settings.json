@@ -1,3 +1,5 @@
 {
-    "liveServer.settings.port": 5502
+    "liveServer.settings.port": 5502,
+    "dictation.enabled": true,
+    "dictation.experimental.llmCleanupModel": "copilot-utility-small"
 }
