@@ -2,6 +2,7 @@
 const produtos = [
   // --- Fila / Grupo de Creatinas (3 itens) ---
   { 
+
     nome: "Creatina Monohidratada 300g", 
     preco: 80.00, 
     estoque: 5, 
