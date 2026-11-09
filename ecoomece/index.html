@@ -4,79 +4,55 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <title>Masaru Suplementos | Loja Online</title>
-<link rel="stylesheet" href="./css/index.css">
-
-
+  <link rel="stylesheet" href="./css/index.css">
 </head>
 <body>
+  <header class="logo-titulo">
+    <div class="titulo-pricipal">
+      <h1 class="SITE-NOME">Masaru Suplementos</h1>
+    </div>
 
+    <div class="pesquisa-opcoes">
+      <input type="text" placeholder="Pesquisar">
+    </div>
 
- <header class="logo-titulo">
+    <select class="selecionar-optcoes" name="opcao"
+      id="opcao">
+      <option value="" disabled selected hidden>Opções</option>
+      <option class="opcao" value="opcao">Creatina</option>
+      <option class="opcao" value="opcao">Whey</option>
+      <option class="opcao" value="opcao">Barra de proteina</option>
+    </select>
 
+    <!-- NOVO BLOCO: Favoritos e Carrinho -->
+    <div class="bloco-acoes">
+      <a href="#" class="icone-user" id="btn-favoritos" title="Favoritos">
+        <img class="imag-banner" src="./imagms/silhueta-de-formato-simples-de-coracao.png" alt="coracao">
+        <span class="text-icone">Favoritos</span>
+        <span class="contador-favoritos">0</span>
+      </a>
 
- <div class="titulo-pricipal">
+      <a href="#" class="icone-user" title="Carrinho de Compras">
+        <img class="imag-banner" src="./imagms/carrinho-de-compras.png" alt="carringo">
+        <span class="text-icone">Carrinho</span>
+        <span class="contador-carrinho">0</span>
+      </a>
+    </div>
+  </header>
 
-  <h1 class="SITE-NOME">Masaru Suplementos</h1>
+  <main class="container-produtos" id="lista-produtos">
+  </main>
 
-  </div>
+  <footer class="footer-logo">
+    <div class="footer-descricao">
+      <h3>todos o direitos reservado</h3>
+      <h2 class="marca">18/02/2026 Bruno da silva de oliveira</h2>
+    </div>
+  </footer>
 
-
-  <div class="pesquisa-opcoes">
-  <input type="text" placeholder="Pesquisar">
-   </div>
-
-
-
- 
-
-
-  <select class="selecionar-optcoes" name="opcao" 
-  id="opcao"> 
-   <option value="" disabled selected hidden>Opções</option>
-  <option class="opcao" value="opcao">Creatina</option>
-  <option class="opcao" value="opcao">Whey</option>
-  <option class="opcao" value="opcao">Barra de proteina</option>
-  </select>
-
-
-  <!-- NOVO BLOCO: Favoritos e Carrinho -->
-
- <div class="bloco-acoes">
-    <a href="#" class="icone-user" title="Favoritos">
-      <img class="imag-banner" src="./imagms/silhueta-de-formato-simples-de-coracao.png" alt="coracao">
-      <span class="text-icone">Favoritos</span>
-    </a>
-
-    <a href="#" class="icone-user" title="Carrinho de Compras">
-      <img class="imag-banner" src="./imagms/carrinho-de-compras.png" alt="carringo">
-      <span class="text-icone">Carrinho</span>
-      <span class="contador-carrinho">0</span>
-    </a>
-  </div>
-
-
- </header>
-
-<main class="container-produtos" id="lista-produtos">
-</main>
-
- <footer class="footer-logo">
-  <div class="footer-descricao">
-    <h3>todos o direitos reservado</h3>
-    <h2 class="marca">18/02/2026 Bruno da silva de oliveira</h2>
-  </div>
-  
- </footer>
-
- <script src="./js/index.js"></script>
-
-
-  
-
-
-  
+  <script src="./js/index.js"></script>
 </body>
 </html>
