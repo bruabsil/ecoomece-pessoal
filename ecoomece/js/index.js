@@ -177,46 +177,83 @@ atualizarBadgeFavoritos();
 
 // ------------------------------------------------------//////////////////------------------------------------------------------------
 
-const btnWhatsapp = document.querySelector('#btn-whatsapp');
 
-if (btnWhatsapp) {
-  btnWhatsapp.addEventListener('click', function (evento) {
-    evento.preventDefault();
 
-    if (contadorCarrinho === 0) {
-      alert("O carrinho está vazio.");
-      return;
-    }
 
-    // Número do WhatsApp do seu amigo (quem vai RECEBER o pedido)
-    let telefoneLoja = ""; 
+////////////////////plaine///////////////////////////////////////////
 
-    // Mensagem base para a loja
-    let mensagem = `🚨 *Novo Pedido Realizado no Site!*%0A%0A`;
+// ==========================================
+// ==========================================
+// 1. EVENTOS DE ABERTURA E FECHAMENTO DO PAINEL
+// ==========================================
+const btnFavoritosTopo = document.querySelector('#btn-favoritos');
+const painelFavoritos = document.querySelector('#painel-favoritos');
+const btnFecharFavoritos = document.querySelector('#btn-fechar-favoritos');
+const overlayFavoritos = document.querySelector('#overlay-favoritos');
+const listaFavoritosPainel = document.querySelector('#lista-favoritos-painel');
 
-    // Varre a lista de produtos para ver quais foram comprados
-    let temItens = false;
-    for (let i = 0; i < produtos.length; i++) {
-      let prod = produtos[i];
-      // Se comprou pelo menos 1 unidade deste produto nesta sessão
-      if (prod.quantidadeComprada && prod.quantidadeComprada > 0) {
-        mensagem += `• ${prod.quantidadeComprada}x ${prod.nome} (R$ ${(prod.preco * prod.quantidadeComprada).toFixed(2)})%0A`;
-        temItens = true;
-      }
-    }
+function abrirPainelFavoritos(e) {
+  if (e) e.preventDefault();
+  painelFavoritos.classList.add('ativo');
+  overlayFavoritos.classList.add('ativo');
+  renderizarProdutosFavoritos(); 
+}
 
-    if (!temItens) {
-      alert("Nenhum produto foi selecionado ainda.");
-      return;
-    }
+function fecharPainelFavoritos() {
+  painelFavoritos.classList.remove('ativo');
+  overlayFavoritos.classList.remove('ativo');
+}
 
-    mensagem += `%0A💰 *Valor Total:* R$ ${valorTotal.toFixed(2)}`;
+if (btnFavoritosTopo) btnFavoritosTopo.addEventListener('click', abrirPainelFavoritos);
+if (btnFecharFavoritos) btnFecharFavoritos.addEventListener('click', fecharPainelFavoritos);
+if (overlayFavoritos) overlayFavoritos.addEventListener('click', fecharPainelFavoritos);
+
+
+// ==========================================
+// 2. RENDERIZAR PRODUTOS FAVORITOS NA GAVETA
+// ==========================================
+function renderizarProdutosFavoritos() {
+  listaFavoritosPainel.innerHTML = '';
+
+  const produtosFavoritados = produtos.filter(p => p.favorito === true);
+
+  if (produtosFavoritados.length === 0) {
+    listaFavoritosPainel.innerHTML = '<p style="color: #aaa; text-align: center; margin-top: 20px;">Nenhum favorito ainda.</p>';
+    return;
+  }
+
+  produtosFavoritados.forEach((prod) => {
+    const indiceReal = produtos.indexOf(prod); 
+    const itemDiv = document.createElement('div');
+    itemDiv.classList.add('item-favorito-card');
     
-    if (valorTotal >= 150) {
-      mensagem += `%0A🎁 *Frete:* Grátis!`;
-    }
+    // HTML limpo: sem onclick de navegação e sem cursor de ponteiro na imagem/texto
+    itemDiv.innerHTML = `
+      <img src="${prod.imagem}" alt="${prod.nome}" class="img-fav-painel">
+      <div class="info-fav-painel">
+        <h4>${prod.nome}</h4>
+        <p>R$ ${prod.preco.toFixed(2)}</p>
+      </div>
+      <button class="btn-remover-fav" onclick="removerFavoritoPorIndice(${indiceReal})">❌</button>
+    `;
 
-    // Abre o WhatsApp do lojista já com o pedido mastigado
-    window.open(`https://wa.me/${5516997013245}?text=${pedido}`, '_blank');
+    listaFavoritosPainel.appendChild(itemDiv);
   });
 }
+
+
+// ==========================================
+// 3. FUNÇÃO AUXILIAR (Apenas Remover)
+// ==========================================
+function removerFavoritoPorIndice(indiceReal) {
+  const produto = produtos[indiceReal];
+  produto.favorito = false;
+  
+  renderizarProdutos();
+  atualizarBadgeFavoritos();
+  renderizarProdutosFavoritos();
+}
+
+
+
+
