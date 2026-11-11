@@ -278,3 +278,31 @@ if (selectOpcao) {
 // Executados na carga inicial da página
 renderizarProdutos(produtos);
 atualizarBadgeFavoritos();
+
+
+// ==========================================
+// BARRA DE PESQUISA DINÂMICA (Com remoção de acentos)
+// ==========================================
+const inputBusca = document.querySelector('#input-busca');
+
+if (inputBusca) {
+  inputBusca.addEventListener('input', (evento) => {
+    // Função auxiliar para padronizar o texto (tira acentos e deixa minúsculo)
+    const normalizar = (texto) => {
+      return texto
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, ""); // Remove os acentos
+    };
+
+    const termoBusca = normalizar(evento.target.value.trim());
+
+    // Filtra comparando os nomes já normalizados
+    const produtosFiltrados = produtos.filter(p => 
+      normalizar(p.nome).includes(termoBusca)
+    );
+
+    console.log(`Buscando por: "${termoBusca}" | Encontrados:`, produtosFiltrados.length);
+    renderizarProdutos(produtosFiltrados);
+  });
+}
