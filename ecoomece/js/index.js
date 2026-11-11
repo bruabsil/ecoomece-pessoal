@@ -6,7 +6,8 @@ const produtos = [
     estoque: 20,
     imagem: "./imagms/Captura de tela 2026-10-08 201829.png",
     quantidadeComprada: 0,
-    favorito: false
+    favorito: false,
+    categoria: "Creatina"
   },
   {
     nome: "Creatina Hardcore 250g",
@@ -14,7 +15,8 @@ const produtos = [
     estoque: 20,
     imagem: "./imagms/Captura de tela 2026-10-08 201829.png",
     quantidadeComprada: 0,
-    favorito: false
+    favorito: false,
+    categoria: "Creatina"
   },
   {
     nome: "Creatina Creapure 300g",
@@ -22,7 +24,8 @@ const produtos = [
     estoque: 20,
     imagem: "./imagms/Captura de tela 2026-10-08 201829.png",
     quantidadeComprada: 0,
-    favorito: false
+    favorito: false,
+    categoria: "Creatina"
   },
 
   // Whey proteins
@@ -32,7 +35,8 @@ const produtos = [
     estoque: 20,
     imagem: "./imagms/Captura de tela 2026-10-08 201829.png",
     quantidadeComprada: 0,
-    favorito: false
+    favorito: false,
+    categoria: "Whey"
   },
   {
     nome: "Whey Protein Isolado 900g",
@@ -40,7 +44,8 @@ const produtos = [
     estoque: 20,
     imagem: "./imagms/Captura de tela 2026-10-08 201829.png",
     quantidadeComprada: 0,
-    favorito: false
+    favorito: false,
+    categoria: "Whey"
   },
   {
     nome: "Whey Protein zero lactose 900g",
@@ -48,7 +53,8 @@ const produtos = [
     estoque: 20,
     imagem: "./imagms/Captura de tela 2026-10-08 201829.png",
     quantidadeComprada: 0,
-    favorito: false
+    favorito: false,
+    categoria: "Whey"
   },
 
   // Pre-treinos
@@ -58,7 +64,8 @@ const produtos = [
     estoque: 20,
     imagem: "./imagms/Captura de tela 2026-10-08 201829.png",
     quantidadeComprada: 0,
-    favorito: false
+    favorito: false,
+    categoria: "Pré-Treino"
   },
   {
     nome: "Pré-Treino Hórus 300g",
@@ -66,7 +73,8 @@ const produtos = [
     estoque: 20,
     imagem: "./imagms/Captura de tela 2026-10-08 201829.png",
     quantidadeComprada: 0,
-    favorito: false
+    favorito: false,
+    categoria: "Pré-Treino"
   },
   {
     nome: "Pré-Treino Venom 200g",
@@ -74,7 +82,8 @@ const produtos = [
     estoque: 20,
     imagem: "./imagms/Captura de tela 2026-10-08 201829.png",
     quantidadeComprada: 0,
-    favorito: false
+    favorito: false,
+    categoria: "Pré-Treino"
   }
 ];
 
@@ -87,22 +96,25 @@ const contadorFavoritosHtml = document.querySelector(".contador-favoritos");
 let contadorCarrinho = 0;
 let valorTotal = 0;
 
-function renderizarProdutos() {
-  containerProdutos.innerHTML = produtos.map((produto) => `
+// ==========================================
+// RENDERIZAR PRODUTOS (Agora aceita lista opcional para o filtro)
+// ==========================================
+function renderizarProdutos(listaProdutos = produtos) {
+  containerProdutos.innerHTML = listaProdutos.map((produto) => `
     <div class="card-produto">
       <img src="${produto.imagem}" alt="${produto.nome}">
       <div class="card-info">
         <h3>${produto.nome}</h3>
         <p class="estoque">Estoque disponível: ${produto.estoque} unidades</p>
         <p class="preco">R$ ${produto.preco.toFixed(2)}</p>
-        <span class="coracao-favorito"></span>
+        <span class="coracao-favorito ${produto.favorito ? 'favoritado' : ''}"></span>
         <button class="btn-comprar">Comprar Produto</button>
       </div>
     </div>
   `).join("");
 
   containerProdutos.querySelectorAll(".card-produto").forEach((card, indice) => {
-    const produto = produtos[indice];
+    const produto = listaProdutos[indice];
 
     card.querySelector(".btn-comprar").addEventListener("click", (evento) => {
       evento.preventDefault();
@@ -170,21 +182,9 @@ function atualizarBadgeFavoritos() {
   contadorFavoritosHtml.textContent = produtos.filter((produto) => produto.favorito).length;
 }
 
-renderizarProdutos();
-atualizarBadgeFavoritos();
-
-
-
-// ------------------------------------------------------//////////////////------------------------------------------------------------
-
-
-
-
-////////////////////plaine///////////////////////////////////////////
 
 // ==========================================
-// ==========================================
-// 1. EVENTOS DE ABERTURA E FECHAMENTO DO PAINEL
+// 1. EVENTOS DE ABERTURA E FECHAMENTO DO PAINEL DE FAVORITOS
 // ==========================================
 const btnFavoritosTopo = document.querySelector('#btn-favoritos');
 const painelFavoritos = document.querySelector('#painel-favoritos');
@@ -227,7 +227,6 @@ function renderizarProdutosFavoritos() {
     const itemDiv = document.createElement('div');
     itemDiv.classList.add('item-favorito-card');
     
-    // HTML limpo: sem onclick de navegação e sem cursor de ponteiro na imagem/texto
     itemDiv.innerHTML = `
       <img src="${prod.imagem}" alt="${prod.nome}" class="img-fav-painel">
       <div class="info-fav-painel">
@@ -255,5 +254,27 @@ function removerFavoritoPorIndice(indiceReal) {
 }
 
 
+// ==========================================
+// 4. FILTRO DE CATEGORIAS (Arrow Function 80/20)
+// ==========================================
+const selectOpcao = document.querySelector('#opcao');
 
+if (selectOpcao) {
+  selectOpcao.addEventListener('change', (evento) => {
+    const categoriaSelecionada = evento.target.value;
+    console.log("Categoria escolhida:", categoriaSelecionada);
 
+    if (categoriaSelecionada === 'todos' || categoriaSelecionada === '') {
+      renderizarProdutos(produtos); // Mostra todos
+    } else {
+      // Filtra usando Arrow Function direto ao ponto
+      const produtosFiltrados = produtos.filter(p => p.categoria === categoriaSelecionada);
+      console.log("Produtos filtrados:", produtosFiltrados);
+      renderizarProdutos(produtosFiltrados); // Desenha apenas os filtrados
+    }
+  });
+}
+
+// Executados na carga inicial da página
+renderizarProdutos(produtos);
+atualizarBadgeFavoritos();
