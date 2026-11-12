@@ -35,11 +35,11 @@
         <span class="contador-favoritos">0</span>
       </a>
 
-      <a href="#" class="icone-user" title="Carrinho de Compras">
-        <img class="imag-banner" src="./imagms/carrinho-de-compras.png" alt="carringo">
-        <span class="text-icone">Carrinho</span>
-        <span class="contador-carrinho">0</span>
-      </a>
+     <a href="#" class="icone-user" id="btn-carrinho" title="Carrinho de Compras">
+  <img class="imag-banner" src="./imagms/carrinho-de-compras.png" alt="carrinho">
+  <span class="text-icone">Carrinho</span>
+  <span class="contador-carrinho">0</span>
+</a>
     </div>
   </header>
 
@@ -58,6 +58,35 @@
     </aside>
 
     <div id="overlay-favoritos" class="overlay-favoritos"></div>
+
+  
+  <!-- Botão no topo para abrir o carrinho -->
+<button id="btn-carrinho" class="btn-topo">
+  🛒 Carrinho <span class="contador-carrinho">0</span>
+</button>
+
+<!-- Overlay e Painel Lateral do Carrinho -->
+<div id="overlay-carrinho" class="overlay"></div>
+<div id="painel-carrinho" class="painel-lateral">
+  <div class="painel-header">
+    <h3>Seu Carrinho de Compras</h3>
+    <button id="btn-fechar-carrinho" class="btn-fechar">❌</button>
+  </div>
+
+  <!-- Lista onde os produtos comprados vão aparecer -->
+  <div id="lista-carrinho-painel" class="lista-painel">
+    <!-- Os itens serão injetados aqui pelo JavaScript -->
+  </div>
+
+  <!-- Rodapé com o Total e Botão do WhatsApp -->
+  <div class="painel-footer">
+    <div class="total-container">
+      <span>Total:</span>
+      <span id="preco-total-carrinho">R$ 0,00</span>
+    </div>
+    <button id="btn-whatsapp" class="btn-whatsapp">Finalizar Pedido</button>
+  </div>
+</div>
 
     
 

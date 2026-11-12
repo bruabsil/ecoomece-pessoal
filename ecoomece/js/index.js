@@ -90,16 +90,18 @@ const produtos = [
 const LIMITE_FRETE_GRATIS = 150;
 const COMPRAS_PARA_FAVORITO = 5;
 const containerProdutos = document.querySelector("#lista-produtos");
-const contadorCarrinhoHtml = document.querySelector(".contador-carrinho");
+const contadorCarrinhoHtml = document.querySelectorAll(".contador-carrinho"); // Pega todos os contadores do carrinho
 const contadorFavoritosHtml = document.querySelector(".contador-favoritos");
 
 let contadorCarrinho = 0;
 let valorTotal = 0;
 
 // ==========================================
-// RENDERIZAR PRODUTOS (Agora aceita lista opcional para o filtro)
+// RENDERIZAR PRODUTOS
 // ==========================================
 function renderizarProdutos(listaProdutos = produtos) {
+  if (!containerProdutos) return;
+
   containerProdutos.innerHTML = listaProdutos.map((produto) => `
     <div class="card-produto">
       <img src="${produto.imagem}" alt="${produto.nome}">
@@ -138,7 +140,9 @@ function comprarProduto(produto, card) {
   produto.estoque -= 1;
   produto.quantidadeComprada += 1;
 
-  contadorCarrinhoHtml.textContent = contadorCarrinho;
+  // Atualiza todos os contadores de carrinho na tela
+  contadorCarrinhoHtml.forEach(el => el.textContent = contadorCarrinho);
+
   card.querySelector(".estoque").textContent =
     `Estoque disponível: ${produto.estoque} unidades`;
 
@@ -175,16 +179,13 @@ function alternarFavorito(produto, coracao) {
 }
 
 function atualizarBadgeFavoritos() {
-  if (!contadorFavoritosHtml) {
-    return;
-  }
-
+  if (!contadorFavoritosHtml) return;
   contadorFavoritosHtml.textContent = produtos.filter((produto) => produto.favorito).length;
 }
 
 
 // ==========================================
-// 1. EVENTOS DE ABERTURA E FECHAMENTO DO PAINEL DE FAVORITOS
+// PAINEL DE FAVORITOS
 // ==========================================
 const btnFavoritosTopo = document.querySelector('#btn-favoritos');
 const painelFavoritos = document.querySelector('#painel-favoritos');
@@ -194,25 +195,22 @@ const listaFavoritosPainel = document.querySelector('#lista-favoritos-painel');
 
 function abrirPainelFavoritos(e) {
   if (e) e.preventDefault();
-  painelFavoritos.classList.add('ativo');
-  overlayFavoritos.classList.add('ativo');
+  if (painelFavoritos) painelFavoritos.classList.add('ativo');
+  if (overlayFavoritos) overlayFavoritos.classList.add('ativo');
   renderizarProdutosFavoritos(); 
 }
 
 function fecharPainelFavoritos() {
-  painelFavoritos.classList.remove('ativo');
-  overlayFavoritos.classList.remove('ativo');
+  if (painelFavoritos) painelFavoritos.classList.remove('ativo');
+  if (overlayFavoritos) overlayFavoritos.classList.remove('ativo');
 }
 
 if (btnFavoritosTopo) btnFavoritosTopo.addEventListener('click', abrirPainelFavoritos);
 if (btnFecharFavoritos) btnFecharFavoritos.addEventListener('click', fecharPainelFavoritos);
 if (overlayFavoritos) overlayFavoritos.addEventListener('click', fecharPainelFavoritos);
 
-
-// ==========================================
-// 2. RENDERIZAR PRODUTOS FAVORITOS NA GAVETA
-// ==========================================
 function renderizarProdutosFavoritos() {
+  if (!listaFavoritosPainel) return;
   listaFavoritosPainel.innerHTML = '';
 
   const produtosFavoritados = produtos.filter(p => p.favorito === true);
@@ -240,14 +238,9 @@ function renderizarProdutosFavoritos() {
   });
 }
 
-
-// ==========================================
-// 3. FUNÇÃO AUXILIAR (Apenas Remover)
-// ==========================================
 function removerFavoritoPorIndice(indiceReal) {
   const produto = produtos[indiceReal];
   produto.favorito = false;
-  
   renderizarProdutos();
   atualizarBadgeFavoritos();
   renderizarProdutosFavoritos();
@@ -255,54 +248,111 @@ function removerFavoritoPorIndice(indiceReal) {
 
 
 // ==========================================
-// 4. FILTRO DE CATEGORIAS (Arrow Function 80/20)
+// FILTRO DE CATEGORIAS
 // ==========================================
 const selectOpcao = document.querySelector('#opcao');
 
 if (selectOpcao) {
   selectOpcao.addEventListener('change', (evento) => {
     const categoriaSelecionada = evento.target.value;
-    console.log("Categoria escolhida:", categoriaSelecionada);
-
     if (categoriaSelecionada === 'todos' || categoriaSelecionada === '') {
-      renderizarProdutos(produtos); // Mostra todos
+      renderizarProdutos(produtos);
     } else {
-      // Filtra usando Arrow Function direto ao ponto
       const produtosFiltrados = produtos.filter(p => p.categoria === categoriaSelecionada);
-      console.log("Produtos filtrados:", produtosFiltrados);
-      renderizarProdutos(produtosFiltrados); // Desenha apenas os filtrados
+      renderizarProdutos(produtosFiltrados);
     }
   });
 }
 
-// Executados na carga inicial da página
-renderizarProdutos(produtos);
-atualizarBadgeFavoritos();
-
 
 // ==========================================
-// BARRA DE PESQUISA DINÂMICA (Com remoção de acentos)
+// BARRA DE PESQUISA DINÂMICA
 // ==========================================
 const inputBusca = document.querySelector('#input-busca');
 
 if (inputBusca) {
   inputBusca.addEventListener('input', (evento) => {
-    // Função auxiliar para padronizar o texto (tira acentos e deixa minúsculo)
     const normalizar = (texto) => {
       return texto
         .toLowerCase()
         .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, ""); // Remove os acentos
+        .replace(/[\u0300-\u036f]/g, "");
     };
 
     const termoBusca = normalizar(evento.target.value.trim());
-
-    // Filtra comparando os nomes já normalizados
     const produtosFiltrados = produtos.filter(p => 
       normalizar(p.nome).includes(termoBusca)
     );
-
-    console.log(`Buscando por: "${termoBusca}" | Encontrados:`, produtosFiltrados.length);
     renderizarProdutos(produtosFiltrados);
   });
+}
+
+
+// ==========================================
+// PAINEL DO CARRINHO DE COMPRAS
+// ==========================================
+document.addEventListener("DOMContentLoaded", () => {
+  const btnCarrinhoTopo = document.querySelector('#btn-carrinho');
+  const painelCarrinho = document.querySelector('#painel-carrinho');
+  const btnFecharCarrinho = document.querySelector('#btn-fechar-carrinho');
+  const overlayCarrinho = document.querySelector('#overlay-carrinho');
+
+  function abrirPainelCarrinho(e) {
+    if (e) e.preventDefault();
+    if (painelCarrinho) painelCarrinho.classList.add('ativo');
+    if (overlayCarrinho) overlayCarrinho.classList.add('ativo');
+    renderizarCarrinhoPainel();
+  }
+
+  function fecharPainelCarrinho() {
+    if (painelCarrinho) painelCarrinho.classList.remove('ativo');
+    if (overlayCarrinho) overlayCarrinho.classList.remove('ativo');
+  }
+
+  if (btnCarrinhoTopo) btnCarrinhoTopo.addEventListener('click', abrirPainelCarrinho);
+  if (btnFecharCarrinho) btnFecharCarrinho.addEventListener('click', fecharPainelCarrinho);
+  if (overlayCarrinho) overlayCarrinho.addEventListener('click', fecharPainelCarrinho);
+
+  // Inicializações na carga da página
+  renderizarProdutos(produtos);
+  atualizarBadgeFavoritos();
+});
+
+function renderizarCarrinhoPainel() {
+  const listaCarrinhoPainel = document.querySelector('#lista-carrinho-painel');
+  const precoTotalCarrinhoHtml = document.querySelector('#preco-total-carrinho');
+  
+  if (!listaCarrinhoPainel) return;
+
+  listaCarrinhoPainel.innerHTML = '';
+
+  const produtosNoCarrinho = produtos.filter(p => p.quantidadeComprada > 0);
+
+  if (produtosNoCarrinho.length === 0) {
+    listaCarrinhoPainel.innerHTML = '<p style="color: #aaa; text-align: center; margin-top: 20px;">Seu carrinho está vazio.</p>';
+    if (precoTotalCarrinhoHtml) precoTotalCarrinhoHtml.textContent = 'R$ 0,00';
+    return;
+  }
+
+  produtosNoCarrinho.forEach((prod) => {
+    const itemDiv = document.createElement('div');
+    itemDiv.classList.add('item-carrinho-card');
+
+    const subtotal = prod.preco * prod.quantidadeComprada;
+
+    itemDiv.innerHTML = `
+      <img src="${prod.imagem}" alt="${prod.nome}" class="img-carrinho-painel">
+      <div class="info-carrinho-painel">
+        <h4>${prod.nome}</h4>
+        <p>R$ ${prod.preco.toFixed(2)} x ${prod.quantidadeComprada}</p>
+        <p class="subtotal">Subtotal: R$ ${subtotal.toFixed(2)}</p>
+      </div>
+    `;
+
+    listaCarrinhoPainel.appendChild(itemDiv);
+  });
+
+  if (precoTotalCarrinhoHtml) {
+    precoTotalCarrinhoHtml.textContent = `R$ ${valorTotal.toFixed(2)}`;
+  }
 }
