@@ -356,3 +356,56 @@ function renderizarCarrinhoPainel() {
     precoTotalCarrinhoHtml.textContent = `R$ ${valorTotal.toFixed(2)}`;
   }
 }
+
+// ==========================================
+// FINALIZAR PEDIDO E ENVIAR PARA O WHATSAPP DA LOJA
+// ==========================================
+document.addEventListener("DOMContentLoaded", () => {
+  const btnFinalizarPedido = document.querySelector('#btn-finalizar-pedido');
+
+  if (btnFinalizarPedido) {
+    btnFinalizarPedido.addEventListener('click', () => {
+      // 1. Filtra apenas os produtos que estão no carrinho
+      const produtosNoCarrinho = produtos.filter(p => p.quantidadeComprada > 0);
+
+      if (produtosNoCarrinho.length === 0) {
+        alert("Seu carrinho está vazio!");
+        return;
+      }
+
+      // 2. Pega a forma de pagamento selecionada
+      const formaPagamentoSelect = document.querySelector('#forma-pagamento');
+      const formaPagamento = formaPagamentoSelect ? formaPagamentoSelect.value : "Pix";
+
+      // 3. Monta o cabeçalho da mensagem
+      let mensagem = "🛍️ *NOVO PEDIDO - MASARU SUPLEMENTOS* 🛍️\n\n";
+
+      // 4. Adiciona cada produto comprado na lista
+      produtosNoCarrinho.forEach((prod) => {
+        const subtotalItem = prod.preco * prod.quantidadeComprada;
+        mensagem += `📦 *${prod.nome}*\n`;
+        mensagem += `   Quantidade: ${prod.quantidadeComprada}x\n`;
+        mensagem += `   Subtotal: R$ ${subtotalItem.toFixed(2)}\n\n`;
+      });
+
+      // 5. Adiciona o total e a forma de pagamento
+      mensagem += `💳 *Forma de Pagamento:* ${formaPagamento}\n`;
+      mensagem += `💰 *Valor Total do Pedido:* R$ ${valorTotal.toFixed(2)}\n`;
+
+      if (valorTotal >= LIMITE_FRETE_GRATIS) {
+        mensagem += `🎁 *Frete:* GRÁTIS\n`;
+      }
+
+      mensagem += `\n_Pedido gerado automaticamente pelo site._`;
+
+      // 6. Insira aqui o número do WhatsApp da loja (com DDD e DDI, ex: 5516999999999)
+      const numeroWhatsApp = "5516997013245"; 
+
+      // 7. Codifica a mensagem para o formato de URL do WhatsApp
+      const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
+
+      // 8. Abre o WhatsApp com a mensagem pronta
+      window.open(urlWhatsApp, '_blank');
+    });
+  }
+});
